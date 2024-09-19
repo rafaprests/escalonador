@@ -56,7 +56,4 @@ public class Processo{
     public Estado getEstado() {
         return estado;
     }
-
-
-    
 }
