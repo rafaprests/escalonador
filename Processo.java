@@ -1,16 +1,22 @@
 public class Processo{
 
     private String nome;
+
     //surto=tempo de cpu utilizado antes de uma operacao de entrada e saida
     private int surto;
+
     //tempoES=tempo que um processo fica bloqueado por conta de uma operacao E/S
     private int tempoES;
+
     //tempoTotal=tempo total de surto que um processo tem que ter
     private int tempoTotal;
-    //valor que define a prioridade dos processos em caso de empate de prioridade
-    private int ordem;
+
     //quanto maior o valor, maior a prioridade, mais tempo o processo pode executar
     private int prioridade;
+
+    //eh inicializada com o mesmo valor da prioridade, a diferenca eh que essa eh decrementada
+    private int credito;
+    
     private Estado estado;
 
     public Processo(String nome, int surto, int tempoES, int tempoTotal, int prioridade){
@@ -20,21 +26,16 @@ public class Processo{
         this.tempoES = tempoES;
         this.tempoTotal = tempoTotal;
         
-        //acho que a ordem eh definida por algum metodo
-        
         //acho que a prioridade eh definida por algum metodo
-
+        this.prioridade = prioridade;
+        this.credito = prioridade;
         //o estado vai ser ready quando ele for criado
         this.estado = Estado.READY;
     }
 
-    //de getter e setter acredito que so se pode mudar a prioridade, a ordem e o estado, o resto faz parte do que o processo eh e nao pode ser mudado
-    public void setPrioridade(int prioridade) {
-        this.prioridade = prioridade;
-    }
-
-    public void setOrdem(int ordem) {
-        this.ordem = ordem;
+    //de setter pode mudar apenas o credito e o estado
+    public void setCredito(int credito) {
+        this.credito = credito;
     }
 
     public void setEstado(Estado estado) {
@@ -61,11 +62,18 @@ public class Processo{
         return prioridade;
     }
     
-    public int getOrdem() {
-        return ordem;
+    public int getCredito() {
+        return credito;
     }
 
     public Estado getEstado() {
         return estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Processo [nome=" + nome + ", surto=" + surto + ", tempoES=" + tempoES + ", tempoTotal=" + tempoTotal
+                + ", prioridade=" + prioridade + ", credito=" + credito + ", estado=" + estado
+                + "]";
     }
 }
