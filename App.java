@@ -10,7 +10,7 @@ public class App {
         e.addProcesso(B);
         e.addProcesso(C);
         e.addProcesso(D);
-
-        System.out.println(e.toString());
+        
+        e.Clock();
     }
 }
